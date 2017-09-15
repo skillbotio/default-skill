@@ -1,0 +1,11 @@
+service: SkillBotDefault
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+functions:
+  skill:
+    handler: lib/Index.handler
+    events:
+      - alexaSkill
