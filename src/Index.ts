@@ -2,14 +2,15 @@ import * as bst from "bespoken-tools";
 import {IntentMap} from "./IntentMap";
 
 const alexa = (event: any, context: any) => {
+    console.log("Type: " + event.request.type);
     if (event.request.type === "IntentRequest") {
         const intentName = event.request.intent.name;
         const reply = IntentMap.forIntent(intentName);
-        return say(reply);
+        return say(reply, context);
     }
 };
 
-const say = (message: string) => {
+const say = (message: string, context: any) => {
     const response = {
         response: {
             outputSpeech: {
@@ -26,7 +27,7 @@ const say = (message: string) => {
         },
         version: "1.0",
     };
-    this.context.succeed(response);
+    context.succeed(response);
 };
 
 exports.handler = bst.Logless.capture("37272b44-0a1e-4cd4-b2c5-55bc526463a2", alexa);

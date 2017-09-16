@@ -13,6 +13,14 @@
     {
       "name": "Skills",
       "samples": ["skills", "what can I do", "what can you do"]
+    },
+    {
+      "name": "Hello",
+      "samples": ["Howdy", "Hello", "Hi", "Hi there"]
+    },
+    {
+      "name": "Who",
+      "samples": ["Who are you", "What are you"]
     }
   ]
 }
