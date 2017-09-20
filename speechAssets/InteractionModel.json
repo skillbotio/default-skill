@@ -11,38 +11,61 @@
       ]
     },
     {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
       "name": "CountryCode",
-      "samples": ["{countryCode}"],
+      "samples": [
+        "{countryCodeSlot}"
+      ],
       "slots": [
         {
-          "name": "countryCode",
+          "name": "countryCodeSlot",
           "type": "COUNTRY_CODE",
           "samples": []
         }
       ]
     },
     {
+      "name": "Hello",
+      "samples": [
+        "Howdy",
+        "Hello",
+        "Hi",
+        "Hi there"
+      ],
+      "slots": []
+    },
+    {
       "name": "PostalCode",
-      "samples": ["{postalCode}"],
+      "samples": [
+        "{postalCodeSlot}"
+      ],
       "slots": [
         {
-          "name": "postalCode",
-          "type": "AMAZON.Number",
+          "name": "postalCodeSlot",
+          "type": "AMAZON.NUMBER",
           "samples": []
         }
       ]
     },
     {
       "name": "Skills",
-      "samples": ["skills", "what can I do", "what can you do"]
-    },
-    {
-      "name": "Hello",
-      "samples": ["Howdy", "Hello", "Hi", "Hi there"]
+      "samples": [
+        "skills",
+        "what can I do",
+        "what can you do"
+      ],
+      "slots": []
     },
     {
       "name": "Who",
-      "samples": ["Who are you", "What are you"]
+      "samples": [
+        "Who are you",
+        "What are you"
+      ],
+      "slots": []
     }
   ],
   "types": [
@@ -53,35 +76,56 @@
           "id": "US",
           "name": {
             "value": "US",
-            "synonyms": ["USA", "America", "US", "United States", "United States of America"]
+            "synonyms": [
+              "USA",
+              "America",
+              "US",
+              "United States",
+              "United States of America"
+            ]
           }
         },
         {
           "id": "CA",
           "name": {
             "value": "CA",
-            "synonyms": ["Canada", "CA"]
+            "synonyms": [
+              "Canada",
+              "CA"
+            ]
           }
         },
         {
           "id": "DE",
           "name": {
             "value": "DE",
-            "synonyms": ["Germany", "DE"]
+            "synonyms": [
+              "Germany",
+              "DE"
+            ]
           }
         },
         {
           "id": "UK",
           "name": {
             "value": "UK",
-            "synonyms": ["England", "Britain", "UK", "United Kingdom", "Great Britain"]
+            "synonyms": [
+              "England",
+              "Britain",
+              "UK",
+              "United Kingdom",
+              "Great Britain"
+            ]
           }
         },
         {
           "id": "PE",
           "name": {
             "value": "PE",
-            "synonyms": ["Peru", "PE"]
+            "synonyms": [
+              "Peru",
+              "PE"
+            ]
           }
         }
       ]

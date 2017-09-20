@@ -15,7 +15,7 @@ const alexa = (event: any, context: any) => {
                         state: "ONBOARDING_POSTAL_CODE",
                         // By convention, we will save off an data on the user object
                         user: {
-                            country: event.request.intent.slots.countryCode.value,
+                            country: event.request.intent.slots.countryCodeSlot.value,
                         },
                     },
                 );
@@ -35,7 +35,7 @@ const alexa = (event: any, context: any) => {
                         state: "ONBOARDING_COMPLETED",
                         // By convention, we will save off an data on the user object
                         user: {
-                            postalCode: event.request.intent.slots.postalCode.value,
+                            postalCode: event.request.intent.slots.postalCodeSlot.value,
                         },
                     },
                 );
