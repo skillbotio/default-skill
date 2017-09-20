@@ -1,0 +1,9 @@
+{
+  "id": "Default",
+  "interactionModelFile": "speechAssets/InteractionModel.json",
+  "invocationName": "Skillbot Default",
+  "name": "Default Skill",
+  "secretKey": "e2fd5cd1-3041-4949-8882-780dc8fb3abb",
+  "sourceID": "tender-orwell-P9Ope5",
+  "url": "https://tender-orwell-P9Ope5.bespoken.link"
+}
