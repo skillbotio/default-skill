@@ -1,9 +1,17 @@
 {
-  "id": "Default",
-  "interactionModelFile": "speechAssets/InteractionModel.json",
-  "invocationName": "Skillbot Default",
-  "name": "Default Skill",
-  "secretKey": "e2fd5cd1-3041-4949-8882-780dc8fb3abb",
-  "sourceID": "tender-orwell-P9Ope5",
-  "url": "https://tender-orwell-P9Ope5.bespoken.link"
+  "aws": {
+    "awsAccessKeyId": "AKIAJWRL475AQE5BWDUQ",
+    "awsSecretAccessKey": "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"
+  },
+  "skill": {
+    "id": "SkillBotDefault",
+    "interactionModelFile": "speechAssets/InteractionModel.json",
+    "invocationName": "Skillbot Default",
+    "lambdaARN": "arn:aws:lambda:us-east-1:048661040156:function:SkillBotDefault-dev-skill",
+    "name": "Skillbot Default Skill"
+  },
+  "bespoken": {
+    "secretKey": "dded76a7-a739-46a0-aed5-9b2f4167933c",
+    "sourceID": "skillbotdefault"
+  }
 }
