@@ -61,8 +61,24 @@ const alexa = (event: any, context: any) => {
     }
 
     if (event.request.type === "IntentRequest") {
-        // Special handling for the debug on and off intents
-        if (intentName === "DebugOn") {
+        // Special handling for associate skill intent
+        if (intentName === "AssociateSkill") {
+            const skillSlot = event.request.intent.slots.skillID;
+            if (!skillSlot.value) {
+                return say("No skill to associate specified. Please enter the skill ID.", context);
+            }
+
+            const skillID = skillSlot.value;
+            return say("Skill: " + skillID + " associated. You can now debug with it.",
+                context,
+                {
+                    user: {
+                        skills: [skillID],
+                    },
+                },
+            );
+        } else if (intentName === "DebugOn") {
+            // Special handling for the debug on intent
             return say("Debugging enabled. Just say \"Debug Off\" to turn it back off.",
                 context,
                 {
@@ -72,6 +88,7 @@ const alexa = (event: any, context: any) => {
                 },
             );
         } else if (intentName === "DebugOff") {
+            // Special handling for the debug off intent
             return say("Debuging disabled.",
                 context,
                 {

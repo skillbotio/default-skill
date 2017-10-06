@@ -80,4 +80,28 @@ describe("DefaultSkill Test", function() {
             assert.equal(response.sessionAttributes.user.debugEnabled, false);
         });
     });
+
+    describe("Associate Tests", () => {
+        it("Associates successfully", async () => {
+            const bvd = require("virtual-alexa");
+            const alexa = bvd.VirtualAlexa.Builder()
+                .handler("lib/src/Index.handler") // Lambda function file and name
+                .interactionModelFile("./speechAssets/InteractionModel.json")
+                .create();
+
+            const response  = await alexa.filter().utter("associate test");
+            assert.equal(response.sessionAttributes.user.skills[0], "test");
+        });
+
+        it("Associates unsuccessfully", async () => {
+            const bvd = require("virtual-alexa");
+            const alexa = bvd.VirtualAlexa.Builder()
+                .handler("lib/src/Index.handler") // Lambda function file and name
+                .interactionModelFile("./speechAssets/InteractionModel.json")
+                .create();
+
+            const response  = await alexa.filter().utter("associate");
+            assert.include(response.response.outputSpeech.ssml, "No skill to associate");
+        });
+    });
 });
