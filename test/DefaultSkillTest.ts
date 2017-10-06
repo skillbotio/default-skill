@@ -7,7 +7,7 @@ describe("DefaultSkill Test", function() {
         it("Onboards successfully", async () => {
             const bvd = require("virtual-alexa");
             const alexa = bvd.VirtualAlexa.Builder()
-                .handler("lib/src/index.handler") // Lambda function file and name
+                .handler("lib/src/Index.handler") // Lambda function file and name
                 .interactionModelFile("./speechAssets/InteractionModel.json")
                 .create();
 
@@ -40,7 +40,7 @@ describe("DefaultSkill Test", function() {
         it("Onboards unsuccessfully", async () => {
             const bvd = require("virtual-alexa");
             const alexa = bvd.VirtualAlexa.Builder()
-                .handler("lib/src/index.handler") // Lambda function file and name
+                .handler("lib/src/Index.handler") // Lambda function file and name
                 .interactionModelFile("./speechAssets/InteractionModel.json")
                 .create();
 
@@ -69,7 +69,7 @@ describe("DefaultSkill Test", function() {
         it("Debugs successfully", async () => {
             const bvd = require("virtual-alexa");
             const alexa = bvd.VirtualAlexa.Builder()
-                .handler("lib/src/index.handler") // Lambda function file and name
+                .handler("lib/src/Index.handler") // Lambda function file and name
                 .interactionModelFile("./speechAssets/InteractionModel.json")
                 .create();
 
