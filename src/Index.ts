@@ -3,10 +3,13 @@ import {IntentMap} from "./IntentMap";
 
 const alexa = (event: any, context: any) => {
     console.log("Type: " + event.request.type);
+    console.log("Data: " + JSON.stringify(event, null, 2));
     const intentName = event.request.intent ? event.request.intent.name : undefined;
 
     // Get the address if we do not have it yet
     if (event.skillbot && event.skillbot.onboarding) {
+        console.log("Attributes: " + JSON.stringify(event.session.attributes, null, 2));
+
         if (event.session.attributes.state === "ONBOARDING_COUNTRY_CODE") {
             if (intentName === "CountryCode") {
                 return say("And what is your zip code (postal code)?",
@@ -58,6 +61,26 @@ const alexa = (event: any, context: any) => {
     }
 
     if (event.request.type === "IntentRequest") {
+        // Special handling for the debug on and off intents
+        if (intentName === "DebugOn") {
+            return say("Debugging enabled. Just say \"Debug Off\" to turn it back off.",
+                context,
+                {
+                    user: {
+                        debugEnabled: true,
+                    },
+                },
+            );
+        } else if (intentName === "DebugOff") {
+            return say("Debuging disabled.",
+                context,
+                {
+                    user: {
+                        debugEnabled: false,
+                    },
+                },
+            );
+        }
         const reply = IntentMap.forIntent(intentName);
         return say(reply, context);
     }

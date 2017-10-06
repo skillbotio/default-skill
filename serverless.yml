@@ -6,6 +6,6 @@ provider:
 
 functions:
   skill:
-    handler: lib/Index.handler
+    handler: lib/src/Index.handler
     events:
       - alexaSkill

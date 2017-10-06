@@ -28,6 +28,25 @@
       ]
     },
     {
+      "name": "DebugOn",
+      "samples": [
+        "debug on",
+        "debug",
+        "verbose"
+      ],
+      "slots": []
+    },
+    {
+      "name": "DebugOff",
+      "samples": [
+        "debug off",
+        "turn debug off",
+        "no debug",
+        "pithy"
+      ],
+      "slots": []
+    },
+    {
       "name": "Hello",
       "samples": [
         "Howdy",
