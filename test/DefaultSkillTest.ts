@@ -76,6 +76,9 @@ describe("DefaultSkill Test", function() {
             let response  = await alexa.filter().utter("debug");
             assert.equal(response.sessionAttributes.user.debugEnabled, true);
 
+            response  = await alexa.filter().utter("version");
+            assert.include(response.response.outputSpeech.ssml, "Version");
+
             response  = await alexa.filter().utter("debug off");
             assert.equal(response.sessionAttributes.user.debugEnabled, false);
         });
@@ -102,6 +105,19 @@ describe("DefaultSkill Test", function() {
 
             const response  = await alexa.filter().utter("associate");
             assert.include(response.response.outputSpeech.ssml, "No skill to associate");
+        });
+    });
+
+    describe("Skills", () => {
+        it("Lists skills", async () => {
+            const bvd = require("virtual-alexa");
+            const alexa = bvd.VirtualAlexa.Builder()
+                .handler("lib/src/Index.handler") // Lambda function file and name
+                .interactionModelFile("./speechAssets/InteractionModel.json")
+                .create();
+
+            let response  = await alexa.filter().utter("skills");
+            assert.include(response.response.outputSpeech.ssml, "Here are some of the skills");
         });
     });
 });

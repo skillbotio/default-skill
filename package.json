@@ -21,6 +21,7 @@
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.28",
+    "@types/request-promise-native": "^1.0.7",
     "chai": "^4.1.0",
     "codecov": "^2.3.0",
     "mocha": "^3.4.2",
@@ -31,6 +32,8 @@
     "virtual-alexa": "^0.3.1"
   },
   "dependencies": {
-    "bespoken-tools": "^1.0.5"
+    "bespoken-tools": "^1.0.5",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   }
 }

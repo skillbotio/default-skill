@@ -92,6 +92,13 @@
       "slots": []
     },
     {
+      "name": "Version",
+      "samples": [
+        "version"
+      ],
+      "slots": []
+    },
+    {
       "name": "Who",
       "samples": [
         "Who are you",

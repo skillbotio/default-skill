@@ -1,63 +1,17 @@
 import * as bst from "bespoken-tools";
+import {Helpers} from "./Helpers";
 import {IntentMap} from "./IntentMap";
+import {Onboarding} from "./Onboarding";
+import {SlackBotAPI} from "./SlackBotAPI";
 
-const alexa = (event: any, context: any) => {
+const alexa = async (event: any, context: any) => {
     console.log("Type: " + event.request.type);
     console.log("Data: " + JSON.stringify(event, null, 2));
     const intentName = event.request.intent ? event.request.intent.name : undefined;
 
     // Get the address if we do not have it yet
     if (event.skillbot && event.skillbot.onboarding) {
-        console.log("Attributes: " + JSON.stringify(event.session.attributes, null, 2));
-
-        if (event.session.attributes.state === "ONBOARDING_COUNTRY_CODE") {
-            if (intentName === "CountryCode") {
-                return say("And what is your zip code (postal code)?",
-                    context,
-                    {
-                        state: "ONBOARDING_POSTAL_CODE",
-                        // By convention, we will save off an data on the user object
-                        user: {
-                            country: event.request.intent.slots.countryCodeSlot.value,
-                        },
-                    },
-                );
-            } else {
-                return say("Sorry - I didn't understand. Please enter your country:",
-                    context,
-                    {
-                        state: "ONBOARDING_COUNTRY_CODE",
-                    },
-                );
-            }
-        } else if (event.session.attributes.state === "ONBOARDING_POSTAL_CODE") {
-            if (intentName === "PostalCode") {
-                return say("Thank you - welcome to SkillBot! Take a look around!",
-                    context,
-                    {
-                        state: "ONBOARDING_COMPLETED",
-                        // By convention, we will save off an data on the user object
-                        user: {
-                            postalCode: event.request.intent.slots.postalCodeSlot.value,
-                        },
-                    },
-                );
-            } else {
-                return say("Sorry - I didn't understand. Please enter your postal code:",
-                    context,
-                    {
-                        state: "ONBOARDING_POSTAL_CODE",
-                    },
-                );
-            }
-        } else {
-            return say("Welcome to Skillbot. Just a couple questions before we get started!\n"
-                + " First, can you tell me what country are you in?",
-                context,
-                { state: "ONBOARDING_COUNTRY_CODE" },
-            );
-        }
-
+        return new Onboarding().handle(intentName, event, context);
     }
 
     if (event.request.type === "IntentRequest") {
@@ -65,11 +19,11 @@ const alexa = (event: any, context: any) => {
         if (intentName === "AssociateSkill") {
             const skillSlot = event.request.intent.slots.skillID;
             if (!skillSlot.value) {
-                return say("No skill to associate specified. Please enter the skill ID.", context);
+                return Helpers.say("No skill to associate specified. Please enter the skill ID.", context);
             }
 
             const skillID = skillSlot.value;
-            return say("Skill: " + skillID + " associated. You can now debug with it.",
+            return Helpers.say("Skill " + skillID + " associated. You can now debug with it.",
                 context,
                 {
                     user: {
@@ -79,7 +33,7 @@ const alexa = (event: any, context: any) => {
             );
         } else if (intentName === "DebugOn") {
             // Special handling for the debug on intent
-            return say("Debugging enabled. Just say \"Debug Off\" to turn it back off.",
+            return Helpers.say("Debugging enabled. Just say \"Debug Off\" to turn it back off.",
                 context,
                 {
                     user: {
@@ -89,7 +43,7 @@ const alexa = (event: any, context: any) => {
             );
         } else if (intentName === "DebugOff") {
             // Special handling for the debug off intent
-            return say("Debuging disabled.",
+            return Helpers.say("Debuging disabled.",
                 context,
                 {
                     user: {
@@ -97,31 +51,27 @@ const alexa = (event: any, context: any) => {
                     },
                 },
             );
+        } else if (intentName === "Skills") {
+            const skills = await new SlackBotAPI().skills();
+            const skillNameList = [];
+            for (const skillID of Object.keys(skills)) {
+                const skill = skills[skillID];
+                if (!skillID.startsWith("test") && skillID !== "skillbot default") {
+                    skillNameList.push(skill.name);
+                }
+            }
+
+            const skillsString = skillNameList.join(", ");
+            // Special handling for the debug off intent
+            return Helpers.say("Here are some of the skills I support: " + skillsString, context);
+        } else if (intentName === "Version") {
+            const version = await new SlackBotAPI().version();
+            // Special handling for the debug off intent
+            return Helpers.say("Version: " + version, context);
         }
         const reply = IntentMap.forIntent(intentName);
-        return say(reply, context);
+        return Helpers.say(reply, context);
     }
-};
-
-const say = (message: string, context: any, attributes?: any) => {
-    const response = {
-        response: {
-            outputSpeech: {
-                ssml: "<speak> " + message + " </speak>",
-                type: "SSML",
-            },
-            reprompt: {
-                outputSpeech: {
-                    ssml: "<speak> " + message + " </speak>",
-                    type: "SSML",
-                },
-            },
-            shouldEndSession: false,
-        },
-        sessionAttributes: attributes,
-        version: "1.0",
-    };
-    context.succeed(response);
 };
 
 exports.handler = bst.Logless.capture("37272b44-0a1e-4cd4-b2c5-55bc526463a2", alexa);
