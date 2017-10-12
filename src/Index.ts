@@ -74,4 +74,4 @@ const alexa = async (event: any, context: any) => {
     }
 };
 
-exports.handler = bst.Logless.capture("37272b44-0a1e-4cd4-b2c5-55bc526463a2", alexa);
+exports.handler = bst.Logless.capture("e2fd5cd1-3041-4949-8882-780dc8fb3abb", alexa);
