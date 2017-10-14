@@ -7,5 +7,7 @@ provider:
 functions:
   skill:
     handler: lib/src/Index.handler
+    environment:
+      SKILLBOT_API_TOKEN: 746561727320696e20746865207261696e0d0a
     events:
       - alexaSkill

@@ -116,7 +116,7 @@ describe("DefaultSkill Test", function() {
                 .interactionModelFile("./speechAssets/InteractionModel.json")
                 .create();
 
-            let response  = await alexa.filter().utter("skills");
+            const response  = await alexa.filter().utter("skills");
             assert.include(response.response.outputSpeech.ssml, "Here are some of the skills");
         });
     });
