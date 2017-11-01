@@ -1,5 +1,7 @@
 import {assert} from "chai";
 
+require("dotenv").config();
+
 describe("DefaultSkill Test", function() {
     this.timeout(10000);
 

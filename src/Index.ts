@@ -57,13 +57,14 @@ const alexa = async (event: any, context: any) => {
             for (const skillID of Object.keys(skills)) {
                 const skill = skills[skillID];
                 if (!skillID.startsWith("test") && skillID !== "skillbot default") {
-                    skillNameList.push(skill.name);
+                    skillNameList.push(skill.name + " - \"" + skill.invocationName + "\"");
                 }
             }
 
-            const skillsString = skillNameList.join(", ");
+            skillNameList.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+            const skillsString = skillNameList.join("\n");
             // Special handling for the debug off intent
-            return Helpers.say("Here are some of the skills I support: " + skillsString, context);
+            return Helpers.say("Here are some of the skills I support:\n" + skillsString, context);
         } else if (intentName === "Version") {
             const version = await new SlackBotAPI().version();
             // Special handling for the debug off intent
