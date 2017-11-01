@@ -16,8 +16,8 @@ https://serverless.com/framework/docs/getting-started/
 # Deployment
 We use serverless for deployment.
 
-Run:
-`set -a`
-`source .env` // to load environment variables for serverless)
-`sls deploy` // deploy!
+Run:  
+* `set -a` // causes environment variables loaded via source to be handed to other processes
+* `source .env` // to load environment variables for serverless)  
+* `sls deploy` // deploy!  
 
