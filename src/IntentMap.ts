@@ -14,13 +14,11 @@ export class IntentMap {
 const map: {[id: string]: string[]} = {
     "AMAZON.HelpIntent": [
         "Core Commands:\n" +
-        "\topen:\tLaunch a skill by saying \"open SKILL_NAME\"\n" +
-        "\t\t\tSynonyms: ask, tell and launch\n" +
-        "\tskills:\tList skills that are available\n\n" +
-        "\tDebug Commands:\n" +
-        "\tassociate:\tClaim ownership a skill with \"associate SKILL_ID\"\n" +
-        "\tdebug:\t\tEnable debuging of skill - shows requests and responses\n" +
-        "\t\t\tSkill must be associated first\n" +
+        "\topen: Launch a skill by saying \"open SKILL_NAME\" - synonyms: ask, tell and launch\n" +
+        "\tskills: List skills that are available\n\n" +
+        "Debug Commands:\n" +
+        "\tassociate: Claim ownership a skill with \"associate SKILL_ID\"\n" +
+        "\tdebug: Enable debugging of skill - shows requests and responses. Skill must be associated first\n" +
         "\tdebug off: Turn off debugging\n"],
     "Hello": ["Hi!", "Howdy!", "Hi there!"],
     "Who": ["I am SkillBot - I allow you to interact with Alexa skills from Slack"],
