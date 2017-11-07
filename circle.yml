@@ -3,3 +3,10 @@ machine:
     version: 6.9.2
   services:
     - docker
+
+deployment:
+  dev:
+    branch: /.*/
+    commands:
+      - npm install serverless -g
+      - sls deploy

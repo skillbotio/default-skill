@@ -22,12 +22,15 @@ const alexa = async (event: any, context: any) => {
                 return Helpers.say("No skill to associate specified. Please enter the skill ID.", context);
             }
 
+            const existingSkills = event.skillbot.user.attributes.skills ? event.skillbot.user.attributes.skills : [];
+
             const skillID = skillSlot.value;
-            return Helpers.say("Skill " + skillID + " associated. You can now debug with it.",
+            existingSkills.push(skillID);
+            return Helpers.say("Skill associated. You can now debug with it.",
                 context,
                 {
                     user: {
-                        skills: [skillID],
+                        skills: existingSkills,
                     },
                 },
             );
