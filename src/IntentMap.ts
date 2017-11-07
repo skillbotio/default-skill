@@ -14,9 +14,9 @@ export class IntentMap {
 const map: {[id: string]: string[]} = {
     "AMAZON.HelpIntent": [
         "Core Commands:\n" +
-        "   open:      Launch a skill by saying \"open SKILL_NAME\"\n" +
-        "              Synonyms: ask, tell and launch\n" +
-        "   skills:    List skills that are available\n\n" +
+        "   open:\tLaunch a skill by saying \"open SKILL_NAME\"\n" +
+        "\t\t\tSynonyms: ask, tell and launch\n" +
+        "   skills:\tList skills that are available\n\n" +
         "Debug Commands:\n" +
         "   associate: Claim ownership a skill with \"associate SKILL_ID\"\n" +
         "   debug:     Enable debuging of skill - shows requests and responses\n" +
