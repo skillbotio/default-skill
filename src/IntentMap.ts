@@ -18,7 +18,7 @@ const map: {[id: string]: string[]} = {
         "\tskills: List skills that are available\n\n" +
         "Debug Commands:\n" +
         "\tassociate: Claim ownership a skill with \"associate SKILL_ID\"\n" +
-        "\tdebug: Enable debugging of skill - shows requests and responses. Skill must be associated first\n" +
+        "\tdebug: Shows request and response JSON. Skill must be associated first\n" +
         "\tdebug off: Turn off debugging\n"],
     "Hello": ["Hi!", "Howdy!", "Hi there!"],
     "Who": ["I am SkillBot - I allow you to interact with Alexa skills from Slack"],
