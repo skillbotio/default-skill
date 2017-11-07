@@ -94,7 +94,13 @@ describe("DefaultSkill Test", function() {
                 .interactionModelFile("./speechAssets/InteractionModel.json")
                 .create();
 
-            const response  = await alexa.filter().utter("associate test");
+            const response  = await alexa.filter((o: any) => {
+                o.skillbot = {
+                    user: {
+                        attributes: {},
+                    },
+                };
+            }).utter("associate test");
             assert.equal(response.sessionAttributes.user.skills[0], "test");
         });
 
